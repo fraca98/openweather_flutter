@@ -10,9 +10,6 @@ class GeocodingUrl extends OpenWeatherUrl {
     /// City name
     required String cityName,
 
-    /// State code (only for the US)
-    String? stateCode,
-
     /// Country code. Please use ISO 3166 country codes
     String? countryCode,
 
@@ -20,11 +17,12 @@ class GeocodingUrl extends OpenWeatherUrl {
     int? limit,
   }) {
     String url;
-    url =
-        'http://api.openweathermap.org/geo/1.0/direct?q=$cityName'; //TODO: fix stateCode,countryCode url
-
-    url = _checkLimit(url, limit);
-    url = '$url&appid=$apiKey';
+    url = 'http://api.openweathermap.org/geo/1.0/direct?q=$cityName';
+    if (countryCode != null) {
+      url = '$url,$countryCode'; //TODO: enum countrycodes?
+    }
+    url = checkLimit(url, limit);
+    url = addApiKey(url, apiKey);
     return url;
   }
 
@@ -33,9 +31,13 @@ class GeocodingUrl extends OpenWeatherUrl {
     required String zipCode,
 
     /// Country code. Please use ISO 3166 country codes
-    required String countryCode,
+    String? countryCode,
   }) {
-    return 'http://api.openweathermap.org/geo/1.0/zip?zip=$zipCode,$countryCode&appid=$apiKey';
+    String url;
+    url = 'http://api.openweathermap.org/geo/1.0/zip?zip=$zipCode';
+    url = checkCountryCode(url, countryCode);
+    url = addApiKey(url, apiKey);
+    return url;
   }
 
   /*---Reverse Geocoding---*/
@@ -51,15 +53,8 @@ class GeocodingUrl extends OpenWeatherUrl {
   }) {
     String url;
     url = 'http://api.openweathermap.org/geo/1.0/reverse?lat=$lat&lon=$lon';
-    url = _checkLimit(url, limit);
-    url = '$url&appid=$apiKey';
+    url = checkLimit(url, limit);
+    url = addApiKey(url, apiKey);
     return url;
   }
-}
-
-_checkLimit(String url, int? limit) {
-  if (limit != null) {
-    url = '$url&limit=$limit';
-  }
-  return url;
 }

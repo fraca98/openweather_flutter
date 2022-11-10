@@ -63,6 +63,7 @@ Map<WeatherLangs, String> weatherLangsString = {
   WeatherLangs.english: 'en',
   WeatherLangs.basque: 'eu',
   WeatherLangs.persianFarsi: 'fa',
+  WeatherLangs.french : 'fr',
   WeatherLangs.finnish: 'fi',
   WeatherLangs.galician: 'gl',
   WeatherLangs.hebrew: 'he',
