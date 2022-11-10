@@ -1,3 +1,4 @@
+import 'package:openweather_flutter/src/enums/weather_countrycodes.dart';
 import 'package:openweather_flutter/src/enums/weather_langs.dart';
 import 'package:openweather_flutter/src/enums/weather_units.dart';
 import 'package:openweather_flutter/src/url/url.dart';
@@ -30,7 +31,7 @@ class CurrentWeatherUrl extends OpenWeatherUrl {
     required String cityName,
 
     ///
-    String? countryCode,
+    WeatherCountryCodes? countryCode,
 
     ///
     WeatherUnits? units,
@@ -40,7 +41,7 @@ class CurrentWeatherUrl extends OpenWeatherUrl {
   }) {
     String url;
     url = 'https://api.openweathermap.org/data/2.5/weather?q=$cityName';
-    url = checkCountryCode(url, countryCode);
+    url = checkCountryCode(url, weatherCountryCodesString[countryCode]);
     url = addApiKey(url, apiKey);
     url = checkUnits(url, units);
     url = checkLang(url, lang);
@@ -52,7 +53,7 @@ class CurrentWeatherUrl extends OpenWeatherUrl {
     required String zipCode,
 
     ///
-    String? countryCode, //if not specified, zipCode is from USA
+    WeatherCountryCodes? countryCode, //if not specified, zipCode is from USA
     ///
     WeatherUnits? units,
 
@@ -61,7 +62,7 @@ class CurrentWeatherUrl extends OpenWeatherUrl {
   }) {
     String url;
     url = 'https://api.openweathermap.org/data/2.5/weather?zip=$zipCode';
-    url = checkCountryCode(url, countryCode);
+    url = checkCountryCode(url, weatherCountryCodesString[countryCode]);
     url = addApiKey(url, apiKey);
     url = checkUnits(url, units);
     url = checkLang(url, lang);

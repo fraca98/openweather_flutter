@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
             /*print(CurrentWeatherUrl(apiKey: openWeatherKey).currentWeatherbyCityName(cityName: 'Montgomery'));*/
             /*print(CurrentWeatherUrl(apiKey: openWeatherKey).currentWeatherbyCityName(cityName: 'Montgomery',countryCode: 'GB));*/
             /*print(CurrentWeatherUrl(apiKey: openWeatherKey)
-                .currentWeatherbyZipCode(zipCode: '24010', countryCode: 'IT', units: WeatherUnits.metric, lang: WeatherLangs.italian));*/
+                .currentWeatherbyZipCode(zipCode: '24010', countryCode: WeatherCountryCodes.italy, units: WeatherUnits.metric, lang: WeatherLangs.italian));*/
 
             /*print(AirPollutionUrl(apiKey: openWeatherKey).currentAirPollution(lat: 51.085, lon: -0.1257));*/
             /*print(AirPollutionUrl(apiKey: openWeatherKey).forecastAirPollution(lat: 51.085, lon: -0.1257));*/
@@ -67,11 +67,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
             /*print(GeocodingUrl(apiKey: openWeatherKey)
                 .coordinatesByLocationName(
-                    cityName: 'London', countryCode: 'US'));*/
+                    cityName: 'London', countryCode: WeatherCountryCodes.unitedStatesOfAmerica));*/
             /*print(GeocodingUrl(apiKey: openWeatherKey)
                 .nameLocationByCoordinates(lat: 51.085, lon: -0.1257));*/
             /*print(GeocodingUrl(apiKey: openWeatherKey)
-                .coordinatesByZipCode(zipCode: '24010'));*/
+                .coordinatesByZipCode(zipCode: '24010', countryCode: WeatherCountryCodes.italy));*/
 
             /*---WeatherMaps---*/
             /*print(WeatherMaps10Url(apiKey: openWeatherKey)

@@ -1,4 +1,5 @@
 import 'package:openweather_flutter/openweather_flutter.dart';
+import 'package:openweather_flutter/src/enums/weather_countrycodes.dart';
 
 class GeocodingUrl extends OpenWeatherUrl {
   GeocodingUrl({required super.apiKey});
@@ -11,16 +12,14 @@ class GeocodingUrl extends OpenWeatherUrl {
     required String cityName,
 
     /// Country code. Please use ISO 3166 country codes
-    String? countryCode,
+    WeatherCountryCodes? countryCode,
 
     /// Number of the locations in the API response (up to 5 results can be returned in the API response), cause many locations can have the same name (for instance, London in the UK and London in the US)
     int? limit,
   }) {
     String url;
     url = 'http://api.openweathermap.org/geo/1.0/direct?q=$cityName';
-    if (countryCode != null) {
-      url = '$url,$countryCode'; //TODO: enum countrycodes?
-    }
+    url = checkCountryCode(url, weatherCountryCodesString[countryCode]);
     url = checkLimit(url, limit);
     url = addApiKey(url, apiKey);
     return url;
@@ -31,11 +30,11 @@ class GeocodingUrl extends OpenWeatherUrl {
     required String zipCode,
 
     /// Country code. Please use ISO 3166 country codes
-    String? countryCode,
+    WeatherCountryCodes? countryCode,
   }) {
     String url;
     url = 'http://api.openweathermap.org/geo/1.0/zip?zip=$zipCode';
-    url = checkCountryCode(url, countryCode);
+    url = checkCountryCode(url, weatherCountryCodesString[countryCode]);
     url = addApiKey(url, apiKey);
     return url;
   }

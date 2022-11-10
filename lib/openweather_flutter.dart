@@ -1,6 +1,7 @@
 // library openweather_flutter;
 
 /// enums
+export 'package:openweather_flutter/src/enums/weather_countrycodes.dart';
 export 'package:openweather_flutter/src/enums/weather_langs.dart';
 export 'package:openweather_flutter/src/enums/weather_layers.dart';
 export 'package:openweather_flutter/src/enums/weather_units.dart';
