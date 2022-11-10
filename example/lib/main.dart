@@ -38,7 +38,15 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: ElevatedButton(
           child: Text('Get URL'),
-          onPressed: () {
+          onPressed: () async {
+            CurrentWeatherData data = await CurrentWeatherManager().fetch(CurrentWeatherUrl(apiKey: openWeatherKey)
+                    .currentWeatherByCoordinates(
+                        lat: 51.5085,
+                        lon: -0.1257,
+                        units: WeatherUnits.imperial,
+                        lang: WeatherLangs.italian));
+            print('main: $data');
+
             /*---CurrentWeather---*/
             /*print(CurrentWeatherUrl(apiKey: openWeatherKey)
                 .currentWeatherByCoordinates(

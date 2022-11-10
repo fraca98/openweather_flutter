@@ -14,8 +14,12 @@ export 'package:openweather_flutter/src/url/geocoding_url.dart';
 export 'package:openweather_flutter/src/url/url.dart';
 export 'package:openweather_flutter/src/url/weathermaps1.0_url.dart';
 
+/// Manager
+export 'package:openweather_flutter/src/manager/manager.dart';
+export 'package:openweather_flutter/src/manager/currentweather_manager.dart';
+
 /// Data
-export 'package:openweather_flutter/src/data/current_weather_data.dart';
+export 'package:openweather_flutter/src/data/currentweather_data.dart';
 export 'package:openweather_flutter/src/data/airpollution_data.dart';
 
 /// Utils
