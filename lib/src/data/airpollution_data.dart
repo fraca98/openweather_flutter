@@ -1,11 +1,19 @@
-class AirPollutionData {
-  List<int>? coord;
+import 'package:openweather_flutter/openweather_flutter.dart';
+
+/// [AirPollutionData] is a class that provides current, forecast and historical air pollution data for any coordinates on the globe
+class AirPollutionData implements OpenWeatherData {
+  /// Coordinates from the specified location (latitude, longitude)
+  Coord? coord;
+
+  /// Object that contains value about air pollution
   List<ListAir>? list;
 
+  /// Default [AirPollutionData] constructor
   AirPollutionData({this.coord, this.list});
 
+  @override
   AirPollutionData.fromJson(Map<String, dynamic> json) {
-    coord = json['coord'].cast<int>();
+    coord = json['coord'] != null ? Coord.fromJson(json['coord']) : null;
     if (json['list'] != null) {
       list = <ListAir>[];
       json['list'].forEach((v) {
@@ -24,9 +32,15 @@ class AirPollutionData {
   }
 }
 
+/// Object that contains value about air pollution
 class ListAir {
+  /// Date and time, Unix, UTC
   int? dt;
+
+  /// Air Quality Index. Possible values: 1, 2, 3, 4, 5. Where 1 = Good, 2 = Fair, 3 = Moderate, 4 = Poor, 5 = Very Poor
   int? aqi;
+
+  /// Oject that contains data of the polluting gases
   Components? components;
 
   ListAir({this.dt, this.aqi, this.components});
@@ -50,14 +64,30 @@ class ListAir {
   }
 }
 
+/// Oject that contains data of the polluting gases
 class Components {
+  /// Сoncentration of CO (Carbon monoxide), μg/m3
   double? co;
+
+  /// Сoncentration of NO (Nitrogen monoxide), μg/m3
   double? no;
+
+  /// Сoncentration of NO2 (Nitrogen dioxide), μg/m3
   double? no2;
+
+  /// Сoncentration of O3 (Ozone), μg/m3
   double? o3;
+
+  /// Сoncentration of SO2 (Sulphur dioxide), μg/m3
   double? so2;
+
+  ///  Сoncentration of PM2.5 (Fine particles matter), μg/m3
   double? pm25;
+
+  /// Сoncentration of PM10 (Coarse particulate matter), μg/m3
   double? pm10;
+
+  /// Сoncentration of NH3 (Ammonia), μg/m3
   double? nh3;
 
   Components(

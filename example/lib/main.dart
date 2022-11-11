@@ -14,13 +14,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  MyHomePage({super.key, required this.title});
 
   final String title;
 
@@ -29,6 +29,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  WeatherMaps10Data? imageMap;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,55 +38,79 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: ElevatedButton(
-          child: Text('Get URL'),
-          onPressed: () async {
-            CurrentWeatherData data = await CurrentWeatherManager().fetch(CurrentWeatherUrl(apiKey: openWeatherKey)
+        child: Column(
+          children: [
+            Container(
+              height: 300,
+              child: imageMap != null
+                  ? Image.memory(imageMap!.imageUint8!)
+                  : SizedBox(),
+            ),
+            ElevatedButton(
+              child: Text('Get URL'),
+              onPressed: () async {
+                /*CurrentWeatherData data = await CurrentWeatherManager().fetch(CurrentWeatherUrl(apiKey: openWeatherKey)
+                        .currentWeatherByCoordinates(
+                            lat: 51.5085,
+                            lon: -0.1257,
+                            units: WeatherUnits.imperial,
+                            lang: WeatherLangs.italian));
+                print('main: $data');*/
+                /*imageMap = await WeatherMaps10Manager().fetch(
+                    WeatherMaps10Url(apiKey: openWeatherKey).getMap(
+                        layer: WeatherLayers.pressure, z: 0, x: 0, y: 0)!);
+                setState(() {});*/
+                /*GeocodingData geodata = await GeocodingManager().fetch(
+                    GeocodingUrl(apiKey: openWeatherKey)
+                        .coordinatesByLocationName(
+                            cityName: 'London',
+                            countryCode:
+                                WeatherCountryCodes.aghanistan));
+                print(geodata);*/
+                AirPollutionData airpoll = await AirPollutionManager().fetch(
+                    AirPollutionUrl(apiKey: openWeatherKey)
+                        .currentAirPollution(lat: 51.085, lon: -0.1257));
+print(airpoll.coord?.lat);
+                /*---CurrentWeather---*/
+                /*print(CurrentWeatherUrl(apiKey: openWeatherKey)
                     .currentWeatherByCoordinates(
                         lat: 51.5085,
                         lon: -0.1257,
                         units: WeatherUnits.imperial,
-                        lang: WeatherLangs.italian));
-            print('main: $data');
+                        lang: WeatherLangs.italian));*/
 
-            /*---CurrentWeather---*/
-            /*print(CurrentWeatherUrl(apiKey: openWeatherKey)
-                .currentWeatherByCoordinates(
-                    lat: 51.5085,
-                    lon: -0.1257,
-                    units: WeatherUnits.imperial,
-                    lang: WeatherLangs.italian));*/
+                /*print(CurrentWeatherUrl(apiKey: openWeatherKey).currentWeatherbyCityName(cityName: 'Montgomery'));*/
+                /*print(CurrentWeatherUrl(apiKey: openWeatherKey).currentWeatherbyCityName(cityName: 'Montgomery',countryCode: 'GB));*/
+                /*print(CurrentWeatherUrl(apiKey: openWeatherKey)
+                    .currentWeatherbyZipCode(zipCode: '24010', countryCode: WeatherCountryCodes.italy, units: WeatherUnits.metric, lang: WeatherLangs.italian));*/
 
-            /*print(CurrentWeatherUrl(apiKey: openWeatherKey).currentWeatherbyCityName(cityName: 'Montgomery'));*/
-            /*print(CurrentWeatherUrl(apiKey: openWeatherKey).currentWeatherbyCityName(cityName: 'Montgomery',countryCode: 'GB));*/
-            /*print(CurrentWeatherUrl(apiKey: openWeatherKey)
-                .currentWeatherbyZipCode(zipCode: '24010', countryCode: WeatherCountryCodes.italy, units: WeatherUnits.metric, lang: WeatherLangs.italian));*/
+                /*print(AirPollutionUrl(apiKey: openWeatherKey).currentAirPollution(lat: 51.085, lon: -0.1257));*/
+                /*print(AirPollutionUrl(apiKey: openWeatherKey).forecastAirPollution(lat: 51.085, lon: -0.1257));*/
+                /*print(AirPollutionUrl(apiKey: openWeatherKey).historicalAirPollution(lat: 51.085, lon: -0.1257, starttimestamp: 1667646232, endtimestamp: 1667905432));*/
 
-            /*print(AirPollutionUrl(apiKey: openWeatherKey).currentAirPollution(lat: 51.085, lon: -0.1257));*/
-            /*print(AirPollutionUrl(apiKey: openWeatherKey).forecastAirPollution(lat: 51.085, lon: -0.1257));*/
-            /*print(AirPollutionUrl(apiKey: openWeatherKey).historicalAirPollution(lat: 51.085, lon: -0.1257, starttimestamp: 1667646232, endtimestamp: 1667905432));*/
+                /*---Day5Hour3Forecast---*/
+                /*print(Day5Hour3ForecastUrl(apiKey: openWeatherKey)
+                    .forecastByCoordinates(lat: 51.085, lon: -0.1257));*/
+                /*print(Day5Hour3ForecastUrl(apiKey: openWeatherKey)
+                    .forecastByCityName(cityName: 'London',countryCode: 'US', lang: WeatherLangs.french));*/
+                /*print(Day5Hour3ForecastUrl(apiKey: openWeatherKey).forecastByZipCode(zipCode: '24010',countryCode: 'IT'));*/
 
-            /*---Day5Hour3Forecast---*/
-            /*print(Day5Hour3ForecastUrl(apiKey: openWeatherKey)
-                .forecastByCoordinates(lat: 51.085, lon: -0.1257));*/
-            /*print(Day5Hour3ForecastUrl(apiKey: openWeatherKey)
-                .forecastByCityName(cityName: 'London',countryCode: 'US', lang: WeatherLangs.french));*/
-            /*print(Day5Hour3ForecastUrl(apiKey: openWeatherKey).forecastByZipCode(zipCode: '24010',countryCode: 'IT'));*/
+                /*---Geocoding---*/
 
-            /*---Geocoding---*/
+                /*print(GeocodingUrl(apiKey: openWeatherKey)
+                    .coordinatesByLocationName(
+                        cityName: 'London', countryCode: WeatherCountryCodes.unitedStatesOfAmerica));*/
+                /*print(GeocodingUrl(apiKey: openWeatherKey)
+                    .nameLocationByCoordinates(lat: 51.085, lon: -0.1257));*/
+                /*print(GeocodingUrl(apiKey: openWeatherKey)
+                    .coordinatesByZipCode(zipCode: '24010', countryCode: WeatherCountryCodes.italy));*/
 
-            /*print(GeocodingUrl(apiKey: openWeatherKey)
-                .coordinatesByLocationName(
-                    cityName: 'London', countryCode: WeatherCountryCodes.unitedStatesOfAmerica));*/
-            /*print(GeocodingUrl(apiKey: openWeatherKey)
-                .nameLocationByCoordinates(lat: 51.085, lon: -0.1257));*/
-            /*print(GeocodingUrl(apiKey: openWeatherKey)
-                .coordinatesByZipCode(zipCode: '24010', countryCode: WeatherCountryCodes.italy));*/
-
-            /*---WeatherMaps---*/
-            /*print(WeatherMaps10Url(apiKey: openWeatherKey)
-                .getMap(layer: WeatherLayers.pressure, z: 0, x: 0, y: 0));*/
-          },
+                /*---WeatherMaps---*/
+                /*print(WeatherMaps10Url(apiKey: openWeatherKey)
+                    .getMap(layer: WeatherLayers.pressure, z: 0, x: 0, y: 0));*/
+              },
+            ),
+          ],
         ),
       ),
     );

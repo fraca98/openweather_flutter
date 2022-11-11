@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:openweather_flutter/openweather_flutter.dart';
 
 class WeatherMaps10Url extends OpenWeatherUrl {
@@ -28,8 +27,7 @@ class WeatherMaps10Url extends OpenWeatherUrl {
         0 <= y &&
         y <= (pow(2, z) - 1)) {
       return 'https://tile.openweathermap.org/map/${weatherLayersString[layer]}/$z/$x/$y.png?appid=$apiKey';
-    }
-    else{
+    } else {
       return null;
     }
   }

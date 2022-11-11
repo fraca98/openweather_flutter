@@ -1,4 +1,4 @@
-/// enum all the countries that have Alpha-2 code as described in the ISO 3166 international standard
+/// enum all the countries that have Alpha-2 country code as described in the ISO 3166 international standard
 enum WeatherCountryCodes {
   aghanistan,
   alandIslands,
@@ -251,7 +251,7 @@ enum WeatherCountryCodes {
   zimbabwe,
 }
 
-/// Maps enum [WeatherCountryCodes] to String value
+/// Maps enum [WeatherCountryCodes] to their String Alpha-2 code
 Map<WeatherCountryCodes, String> weatherCountryCodesString = {
   WeatherCountryCodes.aghanistan: 'AF',
   WeatherCountryCodes.alandIslands: 'AX',
@@ -503,3 +503,6 @@ Map<WeatherCountryCodes, String> weatherCountryCodesString = {
   WeatherCountryCodes.zambia: 'ZM',
   WeatherCountryCodes.zimbabwe: 'ZW',
 };
+
+/// Maps String Alpha-2 country code to their enum [WeatherCountryCodes]
+Map<String, WeatherCountryCodes> weatherCountryCodesStringReversed = Map.fromEntries(weatherCountryCodesString.entries.map((e) => MapEntry(e.value, e.key)));

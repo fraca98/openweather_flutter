@@ -1,7 +1,7 @@
 name: openweather_flutter
-description: A new Flutter package project.
+description: A Flutter package to make your life easier when dealing with (free) OpenWeather APIs. 
 version: 0.0.1
-homepage:
+repository: https://github.com/fraca98/openweather_flutter
 
 environment:
   sdk: '>=2.18.2 <3.0.0'

@@ -48,7 +48,7 @@ enum WeatherLangs {
   zulu,
 }
 
-/// Maps enum [WeatherLangs] to String value
+/// Maps enum [WeatherLangs] to their String languages codes
 Map<WeatherLangs, String> weatherLangsString = {
   WeatherLangs.afrikaans: 'af',
   WeatherLangs.albanian: 'al',
@@ -63,7 +63,7 @@ Map<WeatherLangs, String> weatherLangsString = {
   WeatherLangs.english: 'en',
   WeatherLangs.basque: 'eu',
   WeatherLangs.persianFarsi: 'fa',
-  WeatherLangs.french : 'fr',
+  WeatherLangs.french: 'fr',
   WeatherLangs.finnish: 'fi',
   WeatherLangs.galician: 'gl',
   WeatherLangs.hebrew: 'he',
@@ -96,3 +96,7 @@ Map<WeatherLangs, String> weatherLangsString = {
   WeatherLangs.chineseTraditional: 'zh_tw',
   WeatherLangs.zulu: 'zu',
 };
+
+/// Maps all String languages codes to their enum [WeatherLangs]
+Map<String, WeatherLangs> weatherLangsStringReversed = Map.fromEntries(
+    weatherLangsString.entries.map((e) => MapEntry(e.value, e.key)));

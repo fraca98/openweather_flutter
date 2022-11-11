@@ -1,45 +1,64 @@
-class CurrentWeatherData {
-  Coord? coord;
-  List<Weather>? weather;
-  String? base;
-  Main? main;
-  int? visibility;
-  Wind? wind;
-  Rain? rain;
-  Clouds? clouds;
-  int? dt;
-  Sys? sys;
-  int? timezone;
-  int? id;
-  String? name;
-  int? cod;
+import 'package:openweather_flutter/openweather_flutter.dart';
 
-  CurrentWeatherData(
-      {this.coord,
-      this.weather,
-      this.base,
-      this.main,
-      this.visibility,
-      this.wind,
-      this.rain,
-      this.clouds,
-      this.dt,
-      this.sys,
-      this.timezone,
-      this.id,
-      this.name,
-      this.cod});
+/// [CurrentWeatherData] is a class that provides info about the current weather
+class CurrentWeatherData extends OpenWeatherData {
+  /// Coordinates from the specified location (latitude, longitude)
+  Coord? coord;
+
+  /// General info about the weather
+  List<Weather>? weather;
+
+  /// Main info about the weather
+  WeatherMain? main;
+
+  /// Visibility, meter. The maximum value of the visibility is 10km
+  int? visibility;
+
+  /// Info about the wind
+  Wind? wind;
+
+  /// Info about the rain
+  Rain? rain;
+
+  /// Info about the clouds
+  Clouds? clouds;
+
+  /// Time of data calculation, unix, UTC
+  int? dt;
+
+  ///
+  Sys? sys;
+
+  /// Shift in seconds from UTC
+  int? timezone;
+
+  /// City name
+  String? name;
+
+  /// Default [CurrentWeatherData] constructor
+  CurrentWeatherData({
+    this.coord,
+    this.weather,
+    this.main,
+    this.visibility,
+    this.wind,
+    this.rain,
+    this.clouds,
+    this.dt,
+    this.sys,
+    this.timezone,
+    this.name,
+  });
 
   CurrentWeatherData.fromJson(Map<String, dynamic> json) {
     coord = json['coord'] != null ? Coord.fromJson(json['coord']) : null;
     if (json['weather'] != null) {
-      weather = <Weather>[];
+      List<Weather> weather = [];
       json['weather'].forEach((v) {
-        weather!.add(Weather.fromJson(v));
+        weather.add(Weather.fromJson(v));
       });
     }
-    base = json['base'];
-    main = json['main'] != null ? Main.fromJson(json['main']) : null;
+    main = json['main'] != null ? WeatherMain.fromJson(json['main']) : null;
     visibility = json['visibility'];
     wind = json['wind'] != null ? Wind.fromJson(json['wind']) : null;
     rain = json['rain'] != null ? Rain.fromJson(json['rain']) : null;
@@ -47,9 +66,7 @@ class CurrentWeatherData {
     dt = json['dt'];
     sys = json['sys'] != null ? Sys.fromJson(json['sys']) : null;
     timezone = json['timezone'];
-    id = json['id'];
     name = json['name'];
-    cod = json['cod'];
   }
 
   Map<String, dynamic> toJson() {
@@ -60,7 +77,6 @@ class CurrentWeatherData {
     if (weather != null) {
       data['weather'] = weather!.map((v) => v.toJson()).toList();
     }
-    data['base'] = base;
     if (main != null) {
       data['main'] = main!.toJson();
     }
@@ -79,178 +95,33 @@ class CurrentWeatherData {
       data['sys'] = sys!.toJson();
     }
     data['timezone'] = timezone;
-    data['id'] = id;
     data['name'] = name;
-    data['cod'] = cod;
     return data;
   }
 }
 
-class Coord {
-  double? lon;
-  double? lat;
-
-  Coord({this.lon, this.lat});
-
-  Coord.fromJson(Map<String, dynamic> json) {
-    lon = json['lon'];
-    lat = json['lat'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['lon'] = lon;
-    data['lat'] = lat;
-    return data;
-  }
-}
-
-class Weather {
-  int? id;
-  String? main;
-  String? description;
-  String? icon;
-
-  Weather({this.id, this.main, this.description, this.icon});
-
-  Weather.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    main = json['main'];
-    description = json['description'];
-    icon = json['icon'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['main'] = main;
-    data['description'] = description;
-    data['icon'] = icon;
-    return data;
-  }
-}
-
-class Main {
-  double? temp;
-  double? feelsLike;
-  double? tempMin;
-  double? tempMax;
-  int? pressure;
-  int? humidity;
-  int? seaLevel;
-  int? grndLevel;
-
-  Main(
-      {this.temp,
-      this.feelsLike,
-      this.tempMin,
-      this.tempMax,
-      this.pressure,
-      this.humidity,
-      this.seaLevel,
-      this.grndLevel});
-
-  Main.fromJson(Map<String, dynamic> json) {
-    temp = json['temp'];
-    feelsLike = json['feels_like'];
-    tempMin = json['temp_min'];
-    tempMax = json['temp_max'];
-    pressure = json['pressure'];
-    humidity = json['humidity'];
-    seaLevel = json['sea_level'];
-    grndLevel = json['grnd_level'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['temp'] = temp;
-    data['feels_like'] = feelsLike;
-    data['temp_min'] = tempMin;
-    data['temp_max'] = tempMax;
-    data['pressure'] = pressure;
-    data['humidity'] = humidity;
-    data['sea_level'] = seaLevel;
-    data['grnd_level'] = grndLevel;
-    return data;
-  }
-}
-
-class Wind {
-  double? speed;
-  int? deg;
-  double? gust;
-
-  Wind({this.speed, this.deg, this.gust});
-
-  Wind.fromJson(Map<String, dynamic> json) {
-    speed = json['speed'];
-    deg = json['deg'];
-    gust = json['gust'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['speed'] = speed;
-    data['deg'] = deg;
-    data['gust'] = gust;
-    return data;
-  }
-}
-
-class Rain {
-  double? d1h;
-
-  Rain({this.d1h});
-
-  Rain.fromJson(Map<String, dynamic> json) {
-    d1h = json['1h'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['1h'] = d1h;
-    return data;
-  }
-}
-
-class Clouds {
-  int? all;
-
-  Clouds({this.all});
-
-  Clouds.fromJson(Map<String, dynamic> json) {
-    all = json['all'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['all'] = all;
-    return data;
-  }
-}
-
+/// [Sys] is a class that provides the info about country code, sunrise, sunset
 class Sys {
-  int? type;
-  int? id;
-  String? country;
+  /// Country code (GB, JP etc.)
+  WeatherCountryCodes? country;
+
+  /// Sunrise time, unix, UTC
   int? sunrise;
+
+  /// Sunset time, unix, UTC
   int? sunset;
 
-  Sys({this.type, this.id, this.country, this.sunrise, this.sunset});
+  Sys({this.country, this.sunrise, this.sunset});
 
   Sys.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    id = json['id'];
-    country = json['country'];
+    country = weatherCountryCodesStringReversed[json['country']];
     sunrise = json['sunrise'];
     sunset = json['sunset'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['type'] = type;
-    data['id'] = id;
-    data['country'] = country;
+    data['country'] = weatherCountryCodesString[country];
     data['sunrise'] = sunrise;
     data['sunset'] = sunset;
     return data;

@@ -1,5 +1,4 @@
 import 'package:openweather_flutter/openweather_flutter.dart';
-import 'package:openweather_flutter/src/enums/weather_countrycodes.dart';
 
 class GeocodingUrl extends OpenWeatherUrl {
   GeocodingUrl({required super.apiKey});
