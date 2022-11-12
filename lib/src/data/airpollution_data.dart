@@ -1,7 +1,7 @@
 import 'package:openweather_flutter/openweather_flutter.dart';
 
 /// [AirPollutionData] is a class that provides current, forecast and historical air pollution data for any coordinates on the globe
-class AirPollutionData implements OpenWeatherData {
+class AirPollutionData implements WeatherData {
   /// Coordinates from the specified location (latitude, longitude)
   Coord? coord;
 
@@ -101,14 +101,14 @@ class Components {
       this.nh3});
 
   Components.fromJson(Map<String, dynamic> json) {
-    co = json['co'];
-    no = json['no'];
-    no2 = json['no2'];
-    o3 = json['o3'];
-    so2 = json['so2'];
-    pm25 = json['pm2_5'];
-    pm10 = json['pm10'];
-    nh3 = json['nh3'];
+    co = json['co']?.toDouble();
+    no = json['no']?.toDouble();
+    no2 = json['no2']?.toDouble();
+    o3 = json['o3']?.toDouble();
+    so2 = json['so2']?.toDouble();
+    pm25 = json['pm2_5']?.toDouble();
+    pm10 = json['pm10']?.toDouble();
+    nh3 = json['nh3']?.toDouble();
   }
 
   Map<String, dynamic> toJson() {

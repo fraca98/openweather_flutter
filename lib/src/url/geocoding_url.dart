@@ -1,6 +1,6 @@
 import 'package:openweather_flutter/openweather_flutter.dart';
 
-class GeocodingUrl extends OpenWeatherUrl {
+class GeocodingUrl extends WeatherUrl {
   GeocodingUrl({required super.apiKey});
 
   /*--- Direct Geocoding---*/
@@ -13,7 +13,9 @@ class GeocodingUrl extends OpenWeatherUrl {
     /// Country code. Please use ISO 3166 country codes
     WeatherCountryCodes? countryCode,
 
-    /// Number of the locations in the API response (up to 5 results can be returned in the API response), cause many locations can have the same name (for instance, London in the UK and London in the US)
+    /// Number of the locations in the API response (for instance, London in the UK and London in the US)
+    /// You can set 0 to have all the responses (more than 5) or you can set a number up to 5 (number of results in the API response)
+    /// Warning: returning a [List<GeocodingData>]
     int? limit,
   }) {
     String url;
@@ -46,7 +48,9 @@ class GeocodingUrl extends OpenWeatherUrl {
     /// Geographical coordinates (longitude)
     required double lon,
 
-    /// Number of the locations in the API response (up to 5 results can be returned in the API response), cause many locations can have the same name (for instance, London in the UK and London in the US)
+    /// Number of the locations in the API response (several results can be returned in the API response)
+    /// You can set 0 to have all the responses (more than 5) or you can set a number up to 5 (number of results in the API response)
+    /// Warning: returning a [List<GeocodingData>]
     int? limit,
   }) {
     String url;

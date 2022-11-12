@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:http/http.dart' as http;
 import 'package:openweather_flutter/openweather_flutter.dart';
 
@@ -9,7 +11,8 @@ class WeatherMaps10Manager extends WeatherManager {
   /// Method that fetches [WeatherMaps10Data]
   @override
   Future<WeatherMaps10Data> fetch(String url) async {
-    final response = await getResponse(url); //the response here is response (Response type)
+    final response =
+        await getResponse(url); //the response here is response (Response type)
     WeatherMaps10Data data = WeatherMaps10Data.fromResponse(response);
     return data;
   }
@@ -18,8 +21,16 @@ class WeatherMaps10Manager extends WeatherManager {
   @override
   Future<dynamic> getResponse(String url) async {
     Uri uri = Uri.parse(url);
-    var response = await http.get(uri);
-    print('Response status: ${response.statusCode}');
-    return Future.value(response); //Cause API is returning me a PNG image i pass the entire response (Response type)
+    try {
+      var response = await http.get(uri);
+      WeatherManager.manageError(response);
+      return Future.value(
+          response); //Cause API is returning me a PNG image i pass the entire response (Response type)
+
+    } on SocketException {
+      rethrow;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

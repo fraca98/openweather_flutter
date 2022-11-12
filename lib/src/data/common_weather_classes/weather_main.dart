@@ -35,15 +35,17 @@ class WeatherMain {
       this.seaLevel,
       this.grndLevel});
 
-  WeatherMain.fromJson(Map<String, dynamic> json) {
-    temp = json['temp'];
-    feelsLike = json['feels_like'];
-    tempMin = json['temp_min'];
-    tempMax = json['temp_max'];
-    pressure = json['pressure'];
-    humidity = json['humidity'];
-    seaLevel = json['sea_level'];
-    grndLevel = json['grnd_level'];
+  factory WeatherMain.fromJson(Map<String, dynamic> json) {
+    return WeatherMain(
+      temp: json['temp']?.toDouble(),
+      feelsLike: json['feels_like']?.toDouble(),
+      tempMin: json['temp_min']?.toDouble(),
+      tempMax: json['temp_max']?.toDouble(),
+      pressure: json['pressure'],
+      humidity: json['humidity'],
+      seaLevel: json['sea_level'],
+      grndLevel: json['grnd_level'],
+    );
   }
 
   Map<String, dynamic> toJson() {

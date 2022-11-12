@@ -9,9 +9,8 @@ class Snow {
   /// Default [Snow] constructor
   Snow({this.s1h, this.s3h});
 
-  Snow.fromJson(Map<String, dynamic> json) {
-    s1h = json['1h'];
-    s3h = json['3h'];
+  factory Snow.fromJson(Map<String, dynamic> json) {
+    return Snow(s1h: json['1h']?.toDouble(), s3h: json['3h']?.toDouble());
   }
 
   Map<String, dynamic> toJson() {

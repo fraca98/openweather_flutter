@@ -3,7 +3,7 @@ import 'package:http/http.dart';
 import 'package:openweather_flutter/src/data/data.dart';
 
 ////// [WeatherMaps10Data] is a class that provides provides many kinds of weather maps
-class WeatherMaps10Data extends OpenWeatherData {
+class WeatherMaps10Data extends WeatherData {
   /// Uint8List that contains the map. It can be converted to image in an app with Image.memory()
   Uint8List? imageUint8;
 

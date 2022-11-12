@@ -5,7 +5,7 @@ import 'package:openweather_flutter/src/url/url.dart';
 import '../utils/utils_url.dart';
 
 ///[CurrentWeatherUrl] is a class that express multiple factory constructors to be used to generate OpenWeather API URL [CurrentWeatherData]
-class CurrentWeatherUrl extends OpenWeatherUrl {
+class CurrentWeatherUrl extends WeatherUrl {
   ///Default [CurrentWeatherUrl] constructor
   CurrentWeatherUrl({required super.apiKey});
 
@@ -24,9 +24,9 @@ class CurrentWeatherUrl extends OpenWeatherUrl {
   }
 
   /*---Built in Geocoding---*/
-  /// Not recommended for use
+  /// Not recommended for use cause it uses Built in Geocoding
 
-  String? currentWeatherbyCityName({
+  String currentWeatherbyCityName({
     ///
     required String cityName,
 
@@ -48,7 +48,7 @@ class CurrentWeatherUrl extends OpenWeatherUrl {
     return url;
   }
 
-  String? currentWeatherbyZipCode({
+  String currentWeatherbyZipCode({
     ///
     required String zipCode,
 

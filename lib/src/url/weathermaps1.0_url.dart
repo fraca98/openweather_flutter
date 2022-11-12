@@ -1,10 +1,10 @@
 import 'dart:math';
 import 'package:openweather_flutter/openweather_flutter.dart';
 
-class WeatherMaps10Url extends OpenWeatherUrl {
+class WeatherMaps10Url extends WeatherUrl {
   WeatherMaps10Url({required super.apiKey});
 
-  String? getMap({
+  String getMap({
     // to get a map tile
     /// The layer name
     required WeatherLayers layer,
@@ -28,7 +28,7 @@ class WeatherMaps10Url extends OpenWeatherUrl {
         y <= (pow(2, z) - 1)) {
       return 'https://tile.openweathermap.org/map/${weatherLayersString[layer]}/$z/$x/$y.png?appid=$apiKey';
     } else {
-      return null;
+      throw WeatherMaps10UrlException(message: 'Wrong setting of z/x/y');
     }
   }
 }

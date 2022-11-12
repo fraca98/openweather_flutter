@@ -5,12 +5,27 @@ class GeocodingManager extends WeatherManager {
   /// Default [GeocodingManager] constructor
   GeocodingManager();
 
-  /// Method that fetches [GeocodingData]
+  /// Method that fetches List[GeocodingData] or [GeocodingData]
   @override
-  Future<GeocodingData> fetch(String url) async {
-    final response = await getResponse(url);
-    GeocodingData data =
-        GeocodingData.fromJson(response[0]); //cause returned a List<dynamic>, so i need to access the first element
-    return data;
+  Future<dynamic> fetch(String url) async {
+    //i can export a single GeocodingData or a List<GeocodingData>
+    final response = await getResponse(
+        url); //in this case i can receive a List, so i have to manage it
+    if (response.isEmpty) {
+      throw WeatherExceptionNotFound(
+          message: "Geocoding failed"); //Error 404 if empty response
+    } else {
+      if (response is List) {
+        //if response is a List of Geocoding data
+        List<GeocodingData> data = [];
+        for (var element in response) {
+          data.add(GeocodingData.fromJson(element));
+        }
+        return data;
+      } else { //if not a list of Geocoding data
+        GeocodingData data = GeocodingData.fromJson(response);
+        return data;
+      }
+    }
   }
 }

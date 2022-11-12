@@ -1,3 +1,3 @@
-/// [OpenWeatherData] is the abstract class implementing the data model
+/// [WeatherData] is the abstract class implementing the data model
 /// of OpenWeather generated data
-abstract class OpenWeatherData {}
+abstract class WeatherData {}

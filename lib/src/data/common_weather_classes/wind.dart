@@ -12,10 +12,12 @@ class Wind {
   ///Default [Wind] constructor
   Wind({this.speed, this.deg, this.gust});
 
-  Wind.fromJson(Map<String, dynamic> json) {
-    speed = json['speed'];
-    deg = json['deg'];
-    gust = json['gust'];
+  factory Wind.fromJson(Map<String, dynamic> json) {
+    return Wind(
+      speed: json['speed']?.toDouble(),
+      deg: json['deg'],
+      gust: json['gust']?.toDouble(),
+    );
   }
 
   Map<String, dynamic> toJson() {

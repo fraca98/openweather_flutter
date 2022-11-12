@@ -16,21 +16,28 @@ String checkLang(String url, WeatherLangs? lang) {
   return url;
 }
 
-/// Check if cnt (count) is present in the call and if present add it to the URL
+/// Check if cnt (count) is present in the call and if it's valid add it to the URL
 String checkCnt(String url, int? cnt) {
+  if (cnt != null && (cnt < 0)) {
+    throw Day5Hour3ForecastUrlException(message: 'Wrong setting of cnt');
+  }
   if (cnt != null) {
     url = '$url&cnt=$cnt';
   }
   return url;
 }
 
-/// Check if limit is present in the call and if present add it to the URL
+/// Check if limit is present in the call and if it's valid add it to the URL
 String checkLimit(String url, int? limit) {
+  if (limit != null && (limit < 0 || limit > 5)) {
+    throw GeocodingUrlException(message: 'Wrong setting of limit');
+  }
   if (limit != null) {
     url = '$url&limit=$limit';
   }
   return url;
 }
+
 /// Check if countryCode is present in the call and if present add it to the URL
 String checkCountryCode(String url, String? countryCode) {
   if (countryCode != null) {

@@ -9,9 +9,11 @@ class Coord {
   /// Default [Coord] constructor
   Coord({this.lon, this.lat});
 
-  Coord.fromJson(Map<String, dynamic> json) {
-    lon = json['lon'];
-    lat = json['lat'];
+  factory Coord.fromJson(Map<String, dynamic> json) {
+    return Coord(
+      lon: json['lon']?.toDouble(),
+      lat: json['lat']?.toDouble(),
+    );
   }
 
   Map<String, dynamic> toJson() {

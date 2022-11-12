@@ -41,3 +41,12 @@ export 'package:openweather_flutter/src/data/common_weather_classes/wind.dart';
 
 /// Utils
 export 'package:openweather_flutter/src/utils/utils_url.dart';
+
+/// Error
+export 'package:openweather_flutter/src/error/apikeyissue_exception.dart';
+export 'package:openweather_flutter/src/error/day5hour3forecast_url_exception.dart';
+export 'package:openweather_flutter/src/error/exception.dart';
+export 'package:openweather_flutter/src/error/geocoding_url_exception.dart';
+export 'package:openweather_flutter/src/error/notfound_exception.dart';
+export 'package:openweather_flutter/src/error/ratelimitexceed_exception.dart';
+export 'package:openweather_flutter/src/error/weathermaps1.0_url_excepion.dart';

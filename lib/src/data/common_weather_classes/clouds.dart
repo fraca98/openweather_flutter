@@ -6,8 +6,10 @@ class Clouds {
   /// Default [Clouds] constructor
   Clouds({this.all});
 
-  Clouds.fromJson(Map<String, dynamic> json) {
-    all = json['all'];
+  factory Clouds.fromJson(Map<String, dynamic> json) {
+    return Clouds(
+      all: json['all'],
+    );
   }
 
   Map<String, dynamic> toJson() {

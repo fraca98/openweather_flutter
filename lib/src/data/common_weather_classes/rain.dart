@@ -9,9 +9,8 @@ class Rain {
   /// Default [Rain] constructor
   Rain({this.r1h, this.r3h});
 
-  Rain.fromJson(Map<String, dynamic> json) {
-    r1h = json['1h'];
-    r3h = json['3h'];
+  factory Rain.fromJson(Map<String, dynamic> json) {
+    return Rain(r1h: json['1h']?.toDouble(), r3h: json['3h']?.toDouble());
   }
 
   Map<String, dynamic> toJson() {

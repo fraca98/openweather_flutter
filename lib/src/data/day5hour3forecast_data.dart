@@ -1,7 +1,7 @@
 import 'package:openweather_flutter/openweather_flutter.dart';
 
 /// [Day5Hour3ForecastData] is a class that provides info about the 5 day forecast weather with 3-hour step
-class Day5Hour3ForecastData extends OpenWeatherData {
+class Day5Hour3ForecastData extends WeatherData {
   /// A number of timestamps returned in the API response
   int? cnt;
 
@@ -16,10 +16,10 @@ class Day5Hour3ForecastData extends OpenWeatherData {
 
   Day5Hour3ForecastData.fromJson(Map<String, dynamic> json) {
     cnt = json['cnt'];
+    forecast = <Forecast>[];
     if (json['list'] != null) {
-      List<Forecast> forecast = [];
       json['list'].forEach((v) {
-        forecast.add(Forecast.fromJson(v));
+        forecast!.add(Forecast.fromJson(v));
       });
     }
     city = json['city'] != null ? City.fromJson(json['city']) : null;
@@ -88,16 +88,16 @@ class Forecast {
   Forecast.fromJson(Map<String, dynamic> json) {
     dt = json['dt'];
     main = json['main'] != null ? WeatherMain.fromJson(json['main']) : null;
+    List<Weather> weather = [];
     if (json['weather'] != null) {
-      weather = <Weather>[];
       json['weather'].forEach((v) {
-        weather!.add(Weather.fromJson(v));
+        weather.add(Weather.fromJson(v));
       });
     }
     clouds = json['clouds'] != null ? Clouds.fromJson(json['clouds']) : null;
     wind = json['wind'] != null ? Wind.fromJson(json['wind']) : null;
     visibility = json['visibility'];
-    pop = json['pop'];
+    pop = json['pop']?.toDouble();
     rain = json['rain'] != null ? Rain.fromJson(json['rain']) : null;
     pod = json['sys'] != null ? json['sys']['pod'] : null;
     dtTxt = json['dt_txt'];

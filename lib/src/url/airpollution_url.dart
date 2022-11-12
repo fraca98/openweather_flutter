@@ -1,6 +1,6 @@
 import 'package:openweather_flutter/openweather_flutter.dart';
 
-class AirPollutionUrl extends OpenWeatherUrl {
+class AirPollutionUrl extends WeatherUrl {
   AirPollutionUrl({required super.apiKey});
 
   String currentAirPollution({

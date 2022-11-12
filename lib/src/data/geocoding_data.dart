@@ -1,6 +1,7 @@
 import 'package:openweather_flutter/openweather_flutter.dart';
 
-class GeocodingData extends OpenWeatherData {
+/// [GeocodingData] is a class that provides info for locations while working with geographic names and coordinates
+class GeocodingData extends WeatherData {
   /// Name of the found location
   String? name;
 
@@ -16,7 +17,12 @@ class GeocodingData extends OpenWeatherData {
   /// Country of the found location (Country code)
   WeatherCountryCodes? country;
 
-  GeocodingData({this.name, this.localNames, this.lat, this.lon, this.country});
+  /// Specified zip/post code in the API request for [coordinatesByZipCode]
+  String? zip;
+
+  /// Default [GeocodingData] constructor
+  GeocodingData(
+      {this.name, this.localNames, this.lat, this.lon, this.country, this.zip});
 
   GeocodingData.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -26,6 +32,7 @@ class GeocodingData extends OpenWeatherData {
     lat = json['lat'];
     lon = json['lon'];
     country = weatherCountryCodesStringReversed[json['country']];
+    zip = json['zip'];
   }
 
   Map<String, dynamic> toJson() {
@@ -37,9 +44,11 @@ class GeocodingData extends OpenWeatherData {
     data['lat'] = lat;
     data['lon'] = lon;
     data['country'] = weatherCountryCodesString[country];
+    data['zip'] = zip;
     return data;
   }
 }
+
 // TODO: implement enum languages here
 ///
 class LocalNames {

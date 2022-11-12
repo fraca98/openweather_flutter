@@ -1,7 +1,7 @@
 import 'package:openweather_flutter/openweather_flutter.dart';
 
 /// [CurrentWeatherData] is a class that provides info about the current weather
-class CurrentWeatherData extends OpenWeatherData {
+class CurrentWeatherData extends WeatherData {
   /// Coordinates from the specified location (latitude, longitude)
   Coord? coord;
 
@@ -20,13 +20,16 @@ class CurrentWeatherData extends OpenWeatherData {
   /// Info about the rain
   Rain? rain;
 
+  /// Info about the snow
+  Snow? snow;
+
   /// Info about the clouds
   Clouds? clouds;
 
   /// Time of data calculation, unix, UTC
   int? dt;
 
-  ///
+  /// Info about country code, sunrise, sunset
   Sys? sys;
 
   /// Shift in seconds from UTC
@@ -43,6 +46,7 @@ class CurrentWeatherData extends OpenWeatherData {
     this.visibility,
     this.wind,
     this.rain,
+    this.snow,
     this.clouds,
     this.dt,
     this.sys,
@@ -52,16 +56,17 @@ class CurrentWeatherData extends OpenWeatherData {
 
   CurrentWeatherData.fromJson(Map<String, dynamic> json) {
     coord = json['coord'] != null ? Coord.fromJson(json['coord']) : null;
+    weather = <Weather>[]; //TODO: check
     if (json['weather'] != null) {
-      List<Weather> weather = [];
       json['weather'].forEach((v) {
-        weather.add(Weather.fromJson(v));
+        weather!.add(Weather.fromJson(v));
       });
     }
     main = json['main'] != null ? WeatherMain.fromJson(json['main']) : null;
     visibility = json['visibility'];
     wind = json['wind'] != null ? Wind.fromJson(json['wind']) : null;
     rain = json['rain'] != null ? Rain.fromJson(json['rain']) : null;
+    snow = json['snow'] != null ? Snow.fromJson(json['snow']) : null;
     clouds = json['clouds'] != null ? Clouds.fromJson(json['clouds']) : null;
     dt = json['dt'];
     sys = json['sys'] != null ? Sys.fromJson(json['sys']) : null;
@@ -86,6 +91,9 @@ class CurrentWeatherData extends OpenWeatherData {
     }
     if (rain != null) {
       data['rain'] = rain!.toJson();
+    }
+    if (snow != null) {
+      data['snow'] = snow!.toJson();
     }
     if (clouds != null) {
       data['clouds'] = clouds!.toJson();

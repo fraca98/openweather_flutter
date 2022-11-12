@@ -1,6 +1,6 @@
 import 'package:openweather_flutter/openweather_flutter.dart';
 
-class Day5Hour3ForecastUrl extends OpenWeatherUrl {
+class Day5Hour3ForecastUrl extends WeatherUrl {
   Day5Hour3ForecastUrl({required super.apiKey});
 
   String forecastByCoordinates({
@@ -20,7 +20,8 @@ class Day5Hour3ForecastUrl extends OpenWeatherUrl {
     WeatherLangs? lang,
   }) {
     String url;
-    url = 'api.openweathermap.org/data/2.5/forecast?lat=$lat&lon=$lon';
+    url =
+        'http://api.openweathermap.org/data/2.5/forecast?lat=$lat&lon=$lon';
     url = checkCnt(url, cnt);
     url = addApiKey(url, apiKey);
     url = checkUnits(url, units);
@@ -48,7 +49,7 @@ class Day5Hour3ForecastUrl extends OpenWeatherUrl {
     WeatherLangs? lang,
   }) {
     String url;
-    url = 'api.openweathermap.org/data/2.5/forecast?q=$cityName';
+    url = 'http://api.openweathermap.org/data/2.5/forecast?q=$cityName';
     url = checkCountryCode(url, countryCode);
     url = addApiKey(url, apiKey);
     url = checkCnt(url, cnt);
@@ -74,7 +75,7 @@ class Day5Hour3ForecastUrl extends OpenWeatherUrl {
     WeatherLangs? lang,
   }) {
     String url;
-    url = 'api.openweathermap.org/data/2.5/forecast?zip=$zipCode';
+    url = 'http://api.openweathermap.org/data/2.5/forecast?zip=$zipCode';
     url = checkCountryCode(url, countryCode);
     url = addApiKey(url, apiKey);
     url = checkCnt(url, cnt);
