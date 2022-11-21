@@ -5,7 +5,7 @@ class GeocodingManager extends WeatherManager {
   /// Default [GeocodingManager] constructor
   GeocodingManager();
 
-  /// Method that fetches List[GeocodingData] or [GeocodingData]
+  /// Method that fetches List[GeocodingData] or [GeocodingData].
   @override
   Future<dynamic> fetch(String url) async {
     //i can export a single GeocodingData or a List<GeocodingData>

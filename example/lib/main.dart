@@ -50,7 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Text('Uncomment the line you want and get data'),
                 onPressed: () async {
                   /*---CurrentWeather---*/
-
                   /*CurrentWeatherData currentweathercoord =
                       await CurrentWeatherManager().fetch(
                           CurrentWeatherUrl(apiKey: openWeatherKey)
@@ -115,13 +114,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   /*---Geocoding---*/
 
-                  /*List<GeocodingData> geoCoordinatesByLocationName =
+                  List<GeocodingData> geoCoordinatesByLocationName =
                       await GeocodingManager().fetch(
                           GeocodingUrl(apiKey: openWeatherKey)
                               .coordinatesByLocationName(
                                   limit: 2, cityName: 'Rome'));
                   print(geoCoordinatesByLocationName);
-                  print(geoCoordinatesByLocationName.length);*/
+                  print(geoCoordinatesByLocationName.length);
 
                   /*List<GeocodingData> geonameLocationByCoordinates =
                       await GeocodingManager().fetch(

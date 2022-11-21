@@ -49,9 +49,8 @@ class GeocodingData extends WeatherData {
   }
 }
 
-// TODO: implement enum languages here
-///
-class LocalNames {
+/// 
+class LocalNames { //TODO: modify including all languages
   String? af;
   String? ar;
   String? az;
