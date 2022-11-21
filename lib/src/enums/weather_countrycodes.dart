@@ -505,4 +505,6 @@ Map<WeatherCountryCodes, String> weatherCountryCodesString = {
 };
 
 /// Maps String Alpha-2 country code to their enum [WeatherCountryCodes]
-Map<String, WeatherCountryCodes> weatherCountryCodesStringReversed = Map.fromEntries(weatherCountryCodesString.entries.map((e) => MapEntry(e.value, e.key)));
+Map<String, WeatherCountryCodes> weatherCountryCodesStringReversed =
+    Map.fromEntries(
+        weatherCountryCodesString.entries.map((e) => MapEntry(e.value, e.key)));

@@ -22,7 +22,8 @@ class GeocodingManager extends WeatherManager {
           data.add(GeocodingData.fromJson(element));
         }
         return data;
-      } else { //if not a list of Geocoding data
+      } else {
+        //if not a list of Geocoding data
         GeocodingData data = GeocodingData.fromJson(response);
         return data;
       }

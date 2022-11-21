@@ -49,8 +49,9 @@ class GeocodingData extends WeatherData {
   }
 }
 
-/// 
-class LocalNames { //TODO: modify including all languages
+///
+class LocalNames {
+  //TODO: modify including all languages
   String? af;
   String? ar;
   String? az;
