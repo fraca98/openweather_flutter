@@ -56,7 +56,7 @@ class CurrentWeatherData extends WeatherData {
 
   CurrentWeatherData.fromJson(Map<String, dynamic> json) {
     coord = json['coord'] != null ? Coord.fromJson(json['coord']) : null;
-    weather = <Weather>[]; //TODO: check
+    weather = <Weather>[];
     if (json['weather'] != null) {
       json['weather'].forEach((v) {
         weather!.add(Weather.fromJson(v));

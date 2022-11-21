@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:openweather_flutter/openweather_flutter.dart';
 
@@ -22,13 +21,10 @@ class WeatherMaps10Manager extends WeatherManager {
   Future<dynamic> getResponse(String url) async {
     Uri uri = Uri.parse(url);
     try {
-      var response = await http.get(uri);
+      var response = await http.get(uri).timeout(const Duration(seconds: 5));
       WeatherManager.manageError(response);
       return Future.value(
           response); //Cause API is returning me a PNG image i pass the entire response (Response type)
-
-    } on SocketException {
-      rethrow;
     } catch (e) {
       rethrow;
     }

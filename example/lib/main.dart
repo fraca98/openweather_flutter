@@ -50,20 +50,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Text('Uncomment the line you want and get data'),
                 onPressed: () async {
                   /*---CurrentWeather---*/
+
                   /*CurrentWeatherData currentweathercoord =
-                    await CurrentWeatherManager().fetch(
-                        CurrentWeatherUrl(apiKey: openWeatherKey)
-                            .currentWeatherByCoordinates(
-                                lat: 51.2,
-                                lon: -0.12,
-                                lang: WeatherLangs.italian));*/
+                      await CurrentWeatherManager().fetch(
+                          CurrentWeatherUrl(apiKey: openWeatherKey)
+                              .currentWeatherByCoordinates(
+                                  lat: 55.2,
+                                  lon: 22,
+                                  lang: WeatherLangs.italian));*/
+
                   /*CurrentWeatherData currentweathercityname =
                     await CurrentWeatherManager().fetch(CurrentWeatherUrl(
                             apiKey: openWeatherKey)
                         .currentWeatherbyCityName(
                             cityName: 'Montgomery',
                             countryCode: WeatherCountryCodes
-                                .unitedKingdomofGreatBritainandNorthernIreland));*/
+                                .guatemala));*/
                   /*CurrentWeatherData currentweatherzipcode =
                     await CurrentWeatherManager().fetch(
                         CurrentWeatherUrl(apiKey: openWeatherKey)
@@ -76,11 +78,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   /*---AirPollution---*/
                   /*AirPollutionData airpollcurrent = await AirPollutionManager()
                     .fetch(AirPollutionUrl(apiKey: openWeatherKey)
-                        .currentAirPollution(lat: 1, lon: 0));
-                AirPollutionData airpollforecast = await AirPollutionManager()
+                        .currentAirPollution(lat: -48451, lon: 0));*/
+                  /*AirPollutionData airpollforecast = await AirPollutionManager()
                     .fetch(AirPollutionUrl(apiKey: openWeatherKey)
-                        .forecastAirPollution(lat: 0, lon: 0));
-                AirPollutionData airpollhisto = await AirPollutionManager()
+                        .forecastAirPollution(lat: 0, lon: 0));*/
+                  /*AirPollutionData airpollhisto = await AirPollutionManager()
                     .fetch(AirPollutionUrl(apiKey: openWeatherKey)
                         .historicalAirPollution(
                             lat: 0,
@@ -94,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       await Day5Hour3ForecastManager().fetch(
                           Day5Hour3ForecastUrl(apiKey: openWeatherKey)
                               .forecastByCoordinates(
-                                  lat: 51.085, lon: -0.1257, cnt: -9));
+                                  lat: 51.085, lon: -55881, cnt: 0));
                   print(forecastByCoordinates);*/
 
                   /*Day5Hour3ForecastData forecastByCityName =
@@ -125,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       await GeocodingManager().fetch(
                           GeocodingUrl(apiKey: openWeatherKey)
                               .nameLocationByCoordinates(
-                                  lat: 51.5098, lon: -0.1180, limit: 1));
+                                  lat: 6519814182, lon: -0.1180, limit: 1));
                   print(geonameLocationByCoordinates);
                   print(geonameLocationByCoordinates.length);*/
 
@@ -140,8 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   /*---WeatherMaps---*/
                   /*imageMap = await WeatherMaps10Manager().fetch(
                       WeatherMaps10Url(apiKey: openWeatherKey).getMap(
-                          layer: WeatherLayers.wind, z: 0, x: 0, y: 0));
-                  print(imageMap);
+                          layer: WeatherLayers.temperature, z: 0, x: 0, y: 0));
                   setState(() {});*/
                 }),
           ],

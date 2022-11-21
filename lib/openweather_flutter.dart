@@ -50,3 +50,4 @@ export 'package:openweather_flutter/src/error/geocoding_url_exception.dart';
 export 'package:openweather_flutter/src/error/notfound_exception.dart';
 export 'package:openweather_flutter/src/error/ratelimitexceed_exception.dart';
 export 'package:openweather_flutter/src/error/weathermaps1.0_url_excepion.dart';
+export 'package:openweather_flutter/src/error/wrongparam_exception.dart';
